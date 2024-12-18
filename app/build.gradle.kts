@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
+    kotlin("kapt")
 }
 
 android {
@@ -66,4 +67,17 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
+
+
+
+    // Dependência para ViewModel com Compose
+    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.7.0")
+
+    implementation("androidx.compose.foundation:foundation:1.6.0")
+
+    // Dependência para Navegação com Compose (se necessário)
+    implementation("androidx.navigation:navigation-compose:2.7.3")
+
+    implementation("androidx.room:room-runtime:2.5.2") // A versão pode variar
+
 }
