@@ -69,15 +69,17 @@ dependencies {
     debugImplementation(libs.androidx.ui.test.manifest)
 
 
+    
+    implementation("org.json:json:20210307")
 
-    // Dependência para ViewModel com Compose
+    implementation ("com.android.volley:volley:1.2.1")
+
     implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.7.0")
 
     implementation("androidx.compose.foundation:foundation:1.6.0")
 
-    // Dependência para Navegação com Compose (se necessário)
     implementation("androidx.navigation:navigation-compose:2.7.3")
 
-    implementation("androidx.room:room-runtime:2.5.2") // A versão pode variar
+    implementation("androidx.room:room-runtime:2.5.2")
 
 }

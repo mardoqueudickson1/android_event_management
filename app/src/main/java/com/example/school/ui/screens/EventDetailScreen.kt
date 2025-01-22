@@ -15,10 +15,8 @@ fun EventDetailScreen(viewModel: EventViewModel = viewModel(), eventId: Int? = n
     // Coleta os eventos do ViewModel
     val events by viewModel.events.collectAsState()
 
-    // Filtra o evento com base no ID
     val event = events.find { it.id == eventId }
 
-    // Caso o evento seja encontrado, preenche os campos com os dados do evento
     var name by remember { mutableStateOf(event?.name ?: "") }
     var description by remember { mutableStateOf(event?.description ?: "") }
     var startDate by remember { mutableStateOf(event?.startDate ?: "") }
@@ -69,9 +67,9 @@ fun EventDetailScreen(viewModel: EventViewModel = viewModel(), eventId: Int? = n
                 startTime = startTime, location = location
             )
             if (eventId != null) {
-                viewModel.updateEvent(newEvent)  // Edita o evento
+                viewModel.updateEvent(newEvent)
             } else {
-                viewModel.addEvent(newEvent)    // Adiciona um novo evento
+                viewModel.addEvent(newEvent)
             }
         }) {
             Text("Salvar Evento")
