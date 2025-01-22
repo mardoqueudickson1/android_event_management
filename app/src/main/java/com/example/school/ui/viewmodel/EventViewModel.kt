@@ -13,38 +13,33 @@ class EventViewModel(application: Application) : AndroidViewModel(application) {
 
     private val eventDao = AppDatabase.getDatabase(application).eventDao()
 
-    // StateFlow para armazenar a lista de eventos
     private val _events = MutableStateFlow<List<Event>>(emptyList())
     val events: StateFlow<List<Event>> = _events
 
-    // Carregar os eventos do banco de dados
     fun loadEvents() {
         viewModelScope.launch {
-            _events.value = eventDao.getAllEvents() // Atualiza o StateFlow com os eventos do banco de dados
+            _events.value = eventDao.getAllEvents()
         }
     }
 
-    // Adicionar um novo evento
     fun addEvent(event: Event) {
         viewModelScope.launch {
             eventDao.insert(event)
-            loadEvents()  // Recarrega a lista de eventos após a inserção
+            loadEvents()
         }
     }
 
-    // Atualizar um evento (o método insert também pode ser usado para atualizar)
     fun updateEvent(event: Event) {
         viewModelScope.launch {
-            eventDao.insert(event) // Usa insert para atualizar o evento
-            loadEvents()  // Recarrega a lista de eventos após a atualização
+            eventDao.insert(event)
+            loadEvents()
         }
     }
 
-    // Deletar um evento
     fun deleteEvent(event: Event) {
         viewModelScope.launch {
             eventDao.delete(event)
-            loadEvents()  // Recarrega a lista de eventos após a exclusão
+            loadEvents()
         }
     }
 
