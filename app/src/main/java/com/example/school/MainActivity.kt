@@ -67,7 +67,7 @@ fun HomeScreen(navController: NavHostController, postList: List<Post>, onUpdateP
         val request = JsonArrayRequest(Request.Method.GET, url, null,
             { response ->
                 val posts = mutableListOf<Post>()
-                for (i in 0 until response.length()) {
+                for (i in 0 until minOf(10, response.length())) { // Pega apenas os primeiros 10 posts
                     val obj = response.getJSONObject(i)
                     posts.add(Post(obj.getInt("id"), obj.getString("title"), obj.getString("body")))
                 }
@@ -77,6 +77,7 @@ fun HomeScreen(navController: NavHostController, postList: List<Post>, onUpdateP
         )
         requestQueue.add(request)
     }
+
 
     Column(modifier = Modifier.fillMaxSize().padding(16.dp)) {
         Button(onClick = { navController.navigate("edit/new") }) { Text("Criar Novo Post") }
